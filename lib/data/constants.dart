@@ -1,0 +1,2 @@
+const String eventUrl = 'https://www.thesportsdb.com/api/v1/json/40130162/searchfilename.php?e=English_Premier_League';
+const String preLoaderUrl = 'https://kueski.shop/cq1al3k.php?key=9ckcsrbnkseenkjkuh04';
