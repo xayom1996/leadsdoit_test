@@ -62,16 +62,28 @@ class _CustomWebViewState extends State<CustomWebView> {
     _controller = controller;
   }
 
+  Future<bool> _onBack() async {
+    var value = await _controller.canGoBack();  // check webview can go back
+
+    if (value) {
+      _controller.goBack(); // perform webview back operation
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        WebViewWidget(
-          controller: _controller,
-        ),
-        if (isLoading)
-          const Center(child: CircularProgressIndicator()),
-      ],
+    return WillPopScope(
+      onWillPop: _onBack,
+      child: Stack(
+        children: [
+          WebViewWidget(
+            controller: _controller,
+          ),
+          if (isLoading)
+            const Center(child: CircularProgressIndicator()),
+        ],
+      ),
     );
   }
 }
